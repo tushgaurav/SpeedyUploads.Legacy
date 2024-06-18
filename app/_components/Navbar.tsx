@@ -14,6 +14,13 @@ import {
     Stack,
 } from '@chakra-ui/react'
 
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    UserButton,
+} from '@clerk/nextjs'
+
 interface Props {
     children: React.ReactNode
 }
@@ -65,7 +72,7 @@ export default function Navbar() {
                         >
                             Action
                         </Button>
-                        <Menu>
+                        {/* <Menu>
                             <MenuButton
                                 as={Button}
                                 rounded={'full'}
@@ -85,7 +92,13 @@ export default function Navbar() {
                                 <MenuDivider />
                                 <MenuItem>Link 3</MenuItem>
                             </MenuList>
-                        </Menu>
+                        </Menu> */}
+                        <SignedOut>
+                            <SignInButton />
+                        </SignedOut>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
                     </Flex>
                 </Flex>
 
