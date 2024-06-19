@@ -1,17 +1,68 @@
 // app/page.tsx
-'use client'
-import { Link } from '@chakra-ui/next-js'
+
+import {
+  Flex,
+  Container,
+  Heading,
+  Stack,
+  Text,
+  Button,
+  Image,
+  Icon,
+  IconProps,
+} from '@chakra-ui/react'
+import { SignedOut, SignedIn } from '@clerk/nextjs'
 
 export default function Page() {
   return (
-    <div>
+    <div className='bg-blue-100 text-black'>
+      <Container maxW={'5xl'}>
+        <Stack
+          textAlign={'center'}
+          align={'center'}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 20, md: 28 }}>
+          <Heading
+            fontWeight={200}
+            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+            lineHeight={'110%'}>
+            Fast Uploads, Effortless Shares.
+          </Heading>
+          <Text color={'gray.500'} maxW={'3xl'}>
+            Experience the speed of instant uploads and the ease of effortless file sharing.
+          </Text>
+          <Stack spacing={6} direction={'row'}>
+            <SignedOut>
+              <Button
+                rounded={'full'}
+                px={6}
+                colorScheme={'blue'}
+                bg={'blue.400'}
+                _hover={{ bg: 'blue.500' }}>
+                Get started
+              </Button>
+            </SignedOut>
+            <SignedIn>
+              <Button
+                rounded={'full'}
+                px={6}
+                colorScheme={'blue'}
+                bg={'blue.400'}
+                _hover={{ bg: 'blue.500' }}>
+                Upload Now!
+              </Button>
+            </SignedIn>
+            <Button rounded={'full'} px={6} _hover={{ bg: 'blue.200' }}>
+              Learn more
+            </Button>
+          </Stack>
+          <Flex w={'full'}>
+            <Image height={{ sm: '24rem', lg: '28rem' }} className='mx-auto' mt={{ base: 12, sm: 16 }} src="hero.png" alt='hero' />
+          </Flex>
+        </Stack>
+      </Container>
 
-      <Link href='/about' _hover={{ color: 'blue.500' }}>
-        About
-      </Link>
-      <div className='bg-red-400'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis deleniti commodi rerum doloremque! Eaque, quidem aliquid beatae alias nobis distinctio ducimus magnam labore expedita veniam officia rerum, possimus quia quasi. Natus itaque maxime, quo hic provident illo reiciendis saepe ipsam eligendi maiores consectetur laboriosam laudantium ullam id voluptas magnam voluptatem dolorum soluta quidem animi expedita? Accusamus molestiae incidunt ad dolorem blanditiis adipisci, minima nam cupiditate eos similique itaque quo, quam temporibus doloremque saepe, aliquid ratione vero nulla laborum alias! Qui cum, officia placeat quas fugiat amet pariatur, ut, incidunt dolorum ipsam laboriosam at aspernatur sint quibusdam voluptatem a voluptatibus repudiandae alias id. Provident atque odit id ut repellat aperiam quibusdam placeat mollitia, natus laboriosam quasi accusantium, ipsam velit voluptatibus. Placeat sapiente animi exercitationem incidunt accusamus aspernatur quod! Eum ipsa magni, deserunt praesentium nostrum quam placeat necessitatibus porro accusamus nesciunt illum. Vitae sint ratione, dolore tempore, autem ut quia corrupti quos iusto iure, voluptates velit voluptatibus numquam! Ex, nesciunt necessitatibus rerum quidem saepe numquam debitis eaque voluptate tempore quo optio voluptates distinctio praesentium, dolorem mollitia eius natus ab accusamus fuga. Error adipisci vero totam id voluptate aut corporis, ut quisquam laboriosam mollitia! Provident porro doloribus excepturi nemo aperiam enim id, facere eum maiores harum, consequatur saepe aliquid corporis officia nam, assumenda delectus dolores exercitationem eaque consectetur unde molestiae. Dolores mollitia ratione fugit, dolor nihil iste quaerat aut illum culpa aliquam molestias.
-      </div>
     </div>
   )
 }
+

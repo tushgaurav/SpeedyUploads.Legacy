@@ -99,20 +99,22 @@ export default function StartLayout({ children }: { children: React.ReactNode })
             overflowX="hidden"
             overflowY="auto"
             bg="white"
-            _dark={{ bg: "gray.800" }}
             border
             color="inherit"
             borderRightWidth="1px"
             w="60"
+            background="bg-primaryblue"
             {...props}
         >
+
+
+
             <Flex px="4" py="5" align="center">
 
                 <Text
                     fontSize="2xl"
                     ml="2"
                     color="brand.500"
-                    _dark={{ color: "white" }}
                     fontWeight="semibold"
                 >
                     Choc UI
@@ -175,11 +177,12 @@ export default function StartLayout({ children }: { children: React.ReactNode })
                     </ModalFooter>
                 </ModalContent>
             </Modal>
+
         </Box>
     );
     return (
-        <Box as="section" bg="gray.50" _dark={{ bg: "gray.900" }} minH="100vh">
-            <SidebarContent display={{ base: "none", md: "unset" }} />
+        <Box as="section" className="bg-blue-100" minH="100vh">
+            <SidebarContent display={{ base: "none", md: "unset" }} className="bg-blue-800" />
             <Drawer
                 isOpen={sidebar.isOpen}
                 onClose={sidebar.onClose}
