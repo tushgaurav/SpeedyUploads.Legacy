@@ -43,7 +43,8 @@ interface LinkItemProps {
 
 interface NavItemProps extends FlexProps {
     icon: IconType
-    children: React.ReactNode
+    children: React.ReactNode,
+    link: string
 }
 
 interface MobileProps extends FlexProps {
