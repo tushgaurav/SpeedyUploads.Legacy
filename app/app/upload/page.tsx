@@ -1,10 +1,16 @@
 import UploadCore from "./UploadCore";
+import { Section, SectionTitle, SectionContent } from "@/app/_components/SectionEssentials/Section";
 
 export default function UploadPage() {
     return (
-        <div>
-            <h1>Upload Page</h1>
-            <UploadCore />
-        </div>
+        <Section>
+            <SectionTitle>Upload</SectionTitle>
+            <SectionContent className='mt-4'>
+
+                <UploadCore />
+
+
+            </SectionContent>
+        </Section>
     )
 }
