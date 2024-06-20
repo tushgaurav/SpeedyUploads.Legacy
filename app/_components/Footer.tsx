@@ -89,7 +89,7 @@ export default function Footer() {
                         <Box as="a" href={'#'}>
                             Legal
                         </Box>
-                        <Box as="a" href={'#'}>
+                        <Box as="a" href="/privacy">
                             Privacy Policy
                         </Box>
                         <Box as="a" href={'#'}>
