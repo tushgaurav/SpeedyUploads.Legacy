@@ -1,6 +1,6 @@
-export function Section({ children, ...props }: { children: React.ReactNode }) {
+export function Section({ children, className, ...props }: { children: React.ReactNode, className?: string, props?: any }) {
     return (
-        <section {...props}>
+        <section className={`max-w-7xl mx-auto p-6 ${className}`} {...props}>
             {children}
         </section>
     )
@@ -8,7 +8,7 @@ export function Section({ children, ...props }: { children: React.ReactNode }) {
 
 export function SectionTitle({ children, className, ...props }: { children: React.ReactNode, className?: string, props?: any }) {
     return (
-        <h2 className={`text-2xl font-bold  text-black ${className}`} {...props}>
+        <h2 className={`text-2xl font-bold pb-4 text-gray-800 ${className}`} {...props}>
             {children}
         </h2>
     )
@@ -16,7 +16,7 @@ export function SectionTitle({ children, className, ...props }: { children: Reac
 
 export function SectionContent({ children, className, ...props }: { children: React.ReactNode, className?: string, props?: any }) {
     return (
-        <div className={`text-black ${className}`} {...props}>
+        <div className={`text-gray-600 ${className}`} {...props}>
             {children}
         </div>
     )
