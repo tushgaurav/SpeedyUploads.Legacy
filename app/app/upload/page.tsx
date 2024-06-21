@@ -1,16 +1,16 @@
+import { Metadata } from "next";
 import UploadCore from "./UploadCore";
 import { Section, SectionTitle, SectionContent } from "@/app/_components/SectionEssentials/Section";
 
+export const metadata: Metadata = {
+    title: "Upload Files - SpeedyUploads",
+    description: "Upload",
+}
+
 export default function UploadPage() {
     return (
-        <Section>
-            <SectionTitle>Upload</SectionTitle>
-            <SectionContent className='mt-4'>
-
-                <UploadCore />
-
-
-            </SectionContent>
-        </Section>
+        <div>
+            <UploadCore />
+        </div>
     )
 }

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^12.23.0",
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^2.8.2",
     "@clerk/nextjs": "^5.1.5",
@@ -19,6 +20,7 @@
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-dropzone": "^14.2.3",
     "react-icons": "^5.2.1",
     "use-file-picker": "^2.1.2",
     "uuid": "^10.0.0"

@@ -7,8 +7,23 @@ import {
     ImageDimensionsValidator,
 } from 'use-file-picker/validators';
 import { useState } from 'react';
+import { Button, AspectRatio } from '@chakra-ui/react';
+import { FaCloudUploadAlt } from "react-icons/fa";
+import UploadSuccess from './Success';
+
+const ErrorMessages = {
+    "FileReaderError": "Error reading file. Please try again.",
+    "FileAmountLimitError": "You can only upload 1 file at a time.",
+    "FileSizeError": "File size is too large. Please upload a file less than 50MB.",
+    "ImageDimensionError": "Image dimensions are too large. Please upload an image less than 1600x900 pixels.",
+    "FileTypeError": "File type not supported. Please upload a JPG or PNG file.",
+}
 
 export default function UploadCore() {
+    const [uploading, setUploading] = useState(false);
+    const [uploadComplete, setUploadComplete] = useState(false);
+    const [fileUrl, setFileUrl] = useState('' as string | null);
+
     const { openFilePicker, filesContent, loading, errors } = useFilePicker({
         readAs: 'DataURL',
         accept: 'image/*',
@@ -26,19 +41,25 @@ export default function UploadCore() {
         ]
     });
 
-    const [uploading, setUploading] = useState(false);
+
+    console.log(filesContent)
+
 
     const handleImageUpload = async (base64Image: string) => {
         try {
             setUploading(true);
-            await fetch('/api/upload', {
+            const response = await fetch('/api/upload', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ base64Image }),
             });
+
+            const data = await response.json();
             setUploading(false);
+            setFileUrl(data.url);
+            setUploadComplete(true);
         } catch (error) {
             setUploading(false);
             console.error('Error uploading image:', error);
@@ -56,23 +77,76 @@ export default function UploadCore() {
 
     return (
         <div>
-            <h1>Upload Core</h1>
-            <div>
-                <button onClick={() => openFilePicker()}>Select files</button>
-                <br />
-                {filesContent.map((file, index) => (
-                    <div key={index}>
-                        <h2>{file.name}</h2>
-                        <img alt={file.name} src={file.content}></img>
-                        <br />
-                    </div>
-                ))}
-                {filesContent.length > 0 && (
-                    <button onClick={uploadImages} disabled={uploading}>
-                        {uploading ? 'Uploading...' : 'Upload Images to Server'}
-                    </button>
-                )}
-            </div>
+            {/* If upload complete display something different */}
+            {uploadComplete ? (
+                <div>
+                    <UploadSuccess fileLink={fileUrl as string} />
+                </div>
+            ) : (
+
+                <div className="">
+                    <h1 className='text-xl font-bold'>Upload Files</h1>
+                    <p className=' pb-4'>Select a file or drag and drop it here. Max File Size: 50MB</p>
+
+                    <div className="max-w-xl mb-4">
+                        <label
+                            className="flex justify-center w-full h-32 my-2 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none"
+                        >
+                            <span className="flex items-center space-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                </svg>
+                                <span className="font-medium text-gray-600" onClick={() => openFilePicker()}>
+                                    Drop files to Attach, or <button className="text-blue-600 underline">browse</button>
+                                </span>
+                            </span>
+                            <input type="file" name="file_upload" className="hidden" />
+                        </label>
+
+                        {errors.map((error, index) => (
+                            <p key={index} className='text-red-400 py-2 text-sm font-bold text-center'>{
+                                ErrorMessages[error.name as keyof typeof ErrorMessages]
+                            }</p>
+                        ))}
+
+                        {
+                            filesContent.length > 0 && (
+                                <div className='max-w-xl mt-4 flex flex-col gap-2 items-center justify-center'>
+                                    {
+                                        filesContent.map((file, index) => (
+                                            <div key={index}>
+                                                <h2 className='font-light text-sm '>{file.name}</h2>
+                                                {/* Calculate file length */}
+                                                {/* <p>Size: {file.size} bytes</p> */}
+                                                {/* <AspectRatio maxW='260px' ratio={1}>
+                            <img alt={file.name} src={file.content} className='w-full'></img>
+                        </AspectRatio> */}
+                                            </div>
+                                        ))
+                                    }
+                                    <Button
+                                        colorScheme='blue'
+                                        leftIcon={<FaCloudUploadAlt />}
+                                        isLoading={uploading}
+                                        loadingText="Uploading"
+                                        onClick={uploadImages}
+                                        disabled={uploading}
+                                        className='mt-2'
+                                    >
+                                        Upload
+                                    </Button>
+                                </div>
+                            )
+                        }
+
+                        {fileUrl}
+                    </div >
+                </div>
+            )}
+
+
+
+
         </div>
     );
 }
