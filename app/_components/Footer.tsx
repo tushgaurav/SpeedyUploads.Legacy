@@ -1,121 +1,110 @@
-"use client"
-
-import { ReactNode } from 'react'
+'use client'
 
 import {
     Box,
+    chakra,
     Container,
-    SimpleGrid,
     Stack,
     Text,
     useColorModeValue,
+    VisuallyHidden,
+    Image
 } from '@chakra-ui/react'
-import Image from 'next/image'
+import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { ReactNode } from 'react'
+import Link from 'next/link'
 
 const Logo = (props: any) => {
     return (
-        <Image src="/logo_bg.png" alt="Logo" width={150} height={50} />
+        <Link href="/">
+            <Image w="120px" src="/logo_bg.png" alt="logo" {...props} />
+        </Link>
     )
 }
 
-const ListHeader = ({ children }: { children: ReactNode }) => {
+const SocialButton = ({
+    children,
+    label,
+    href,
+}: {
+    children: ReactNode
+    label: string
+    href: string
+}) => {
     return (
-        <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+        <chakra.button
+            rounded={'full'}
+            w={8}
+            h={8}
+            cursor={'pointer'}
+            as={'a'}
+            href={href}
+            display={'inline-flex'}
+            alignItems={'center'}
+            justifyContent={'center'}
+            transition={'background 0.3s ease'}
+            _hover={{
+                bg: "blue.800",
+            }}>
+            <VisuallyHidden>{label}</VisuallyHidden>
             {children}
-        </Text>
+        </chakra.button>
     )
 }
 
 export default function Footer() {
     return (
-        <Box className='bg-primaryblue text-blue-100'>
-            <Container as={Stack} maxW={'6xl'} py={10}>
-                <SimpleGrid
-                    templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr 1fr' }}
-                    spacing={8}>
-                    <Stack spacing={6}>
-                        <Box>
-                            <Logo color={useColorModeValue('gray.700', 'white')} />
-                            <Text fontWeight={'bold'} pt="4">
-                                Lightning Fast File Sharing.
-                            </Text>
-                        </Box>
-                        <Text fontSize={'sm'}>© 2024 SpeedyUploads. All rights reserved</Text>
-                    </Stack>
-                    <Stack align={'flex-start'}>
-                        <ListHeader>Product</ListHeader>
-                        <Box as="a" href={'#'}>
-                            Overview
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Features
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Tutorials
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Pricing
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Releases
-                        </Box>
-                    </Stack>
-                    <Stack align={'flex-start'}>
-                        <ListHeader>Company</ListHeader>
-                        <Box as="a" href={'#'}>
-                            About
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Press
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Careers
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Contact
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Partners
-                        </Box>
-                    </Stack>
-                    <Stack align={'flex-start'}>
-                        <ListHeader>Support</ListHeader>
-                        <Box as="a" href={'#'}>
-                            Help Center
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Terms of Service
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Legal
-                        </Box>
-                        <Box as="a" href="/privacy">
-                            Privacy Policy
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Status
-                        </Box>
-                    </Stack>
-                    <Stack align={'flex-start'}>
-                        <ListHeader>Follow Us</ListHeader>
-                        <Box as="a" href={'#'}>
-                            Facebook
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Twitter
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Dribbble
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Instagram
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            LinkedIn
-                        </Box>
-                    </Stack>
-                </SimpleGrid>
+        <Box className='bg-primaryblue text-white'>
+            <Container
+                as={Stack}
+                maxW={'6xl'}
+                py={4}
+                spacing={4}
+                justify={'center'}
+                align={'center'}>
+                <div className='flex items-center gap-8 flex-wrap pb-2'>
+                    <Logo />
+                    <Text className='text-xs font-bold hover:cursor-not-allowed'>A Prokits Digital Brand</Text>
+                </div>
+                <Stack direction={'row'} spacing={6}>
+                    <Box as="a" href={'https://speedyuploads.instatus.com/'}>
+                        System Status
+                    </Box>
+                    <Box as="a" href={'#'}>
+                        About
+                    </Box>
+                    <Box as="a" href={'/privacy'}>
+                        Privacy Policy
+                    </Box>
+                </Stack>
             </Container>
+
+            <Box
+                borderTopWidth={1}
+                borderStyle={'solid'}
+            >
+                <Container
+                    as={Stack}
+                    maxW={'7xl'}
+                    py={4}
+                    direction={{ base: 'column', md: 'row' }}
+                    spacing={4}
+                    justify={{ base: 'center', md: 'space-between' }}
+                    align={{ base: 'center', md: 'center' }}>
+                    <Text>© 2024 Prokits Digital Pvt. Ltd. All rights reserved</Text>
+                    <Stack direction={'row'} spacing={6}>
+                        <SocialButton label={'Twitter'} href={'#'}>
+                            <FaTwitter />
+                        </SocialButton>
+                        <SocialButton label={'YouTube'} href={'#'}>
+                            <FaYoutube />
+                        </SocialButton>
+                        <SocialButton label={'Instagram'} href={'#'}>
+                            <FaInstagram />
+                        </SocialButton>
+                    </Stack>
+                </Container>
+            </Box>
         </Box>
     )
 }
