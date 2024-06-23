@@ -136,16 +136,24 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             justifyContent={{ base: 'space-between', md: 'flex-end' }}
             {...rest}>
             <IconButton
+                size="sm"
                 display={{ base: 'flex', md: 'none' }}
                 onClick={onOpen}
                 variant="outline"
                 aria-label="open menu"
                 icon={<FiMenu />}
+                color="white"
+                _hover={
+                    {
+                        bg: 'cyan.100',
+                        color: 'black',
+                    }
+                }
             />
 
             <Image src="/logo_bg.png" alt="Logo" width={120} height={50} className='md:hidden' />
 
-            <HStack spacing={{ base: '0', md: '6' }}>
+            <HStack spacing={{ base: '3', md: '6' }}>
                 <FiBell />
                 <Flex alignItems={'center'}>
                     <UserButton />

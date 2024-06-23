@@ -1,5 +1,5 @@
 // app/page.tsx
-
+import { Metadata } from 'next'
 import {
   Flex,
   Container,
@@ -12,6 +12,11 @@ import {
   IconProps,
 } from '@chakra-ui/react'
 import { SignedOut, SignedIn } from '@clerk/nextjs'
+
+export const metadata: Metadata = {
+  title: 'SpeedyUploads.com - Fast Uploads and File Sharing',
+  description: 'Fast Uploads, Effortless Shares.',
+}
 
 export default function Page() {
   return (
