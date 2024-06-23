@@ -1,14 +1,12 @@
-'use client'
-
 import {
     Box,
     chakra,
     Container,
     Stack,
     Text,
-    useColorModeValue,
     VisuallyHidden,
-    Image
+    Image,
+    Button,
 } from '@chakra-ui/react'
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 import { ReactNode } from 'react'
@@ -32,7 +30,8 @@ const SocialButton = ({
     href: string
 }) => {
     return (
-        <chakra.button
+        <Button
+            variant={'unstyled'}
             rounded={'full'}
             w={8}
             h={8}
@@ -48,7 +47,7 @@ const SocialButton = ({
             }}>
             <VisuallyHidden>{label}</VisuallyHidden>
             {children}
-        </chakra.button>
+        </Button>
     )
 }
 
