@@ -59,9 +59,9 @@ interface SidebarProps extends BoxProps {
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Home', icon: FiHome, link: '/' },
     { name: 'Upload', icon: FiTrendingUp, link: '/app/upload' },
-    { name: 'History', icon: FiCompass, link: '/history' },
-    { name: 'Quota', icon: FiStar, link: '/quota' },
-    { name: 'Settings', icon: FiSettings, link: '/settings' },
+    { name: 'History', icon: FiCompass, link: '/app/history' },
+    { name: 'Quota', icon: FiStar, link: '/app/quota' },
+    { name: 'Settings', icon: FiSettings, link: '/app/settings' },
 ]
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
