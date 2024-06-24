@@ -1,113 +1,22 @@
 import TableComponent from "./TableComponent";
 import Pagination from "./Pagination";
+import { getUploads } from "@/server/db/db_operations";
 
-export default function TableView({ page, perPage }: { page: string, perPage: string }) {
-    const header = ["name", "created", "actions"];
-    const data = [
-        {
-            name: "Daggy",
-            created: "7 days ago",
-        },
-        {
-            name: "Anubra",
-            created: "23 hours ago",
-        },
-        {
-            name: "Josef",
-            created: "A few seconds ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Daggy",
-            created: "7 days ago",
-        },
-        {
-            name: "Anubra",
-            created: "23 hours ago",
-        },
-        {
-            name: "Josef",
-            created: "A few seconds ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Daggy",
-            created: "7 days ago",
-        },
-        {
-            name: "Anubra",
-            created: "23 hours ago",
-        },
-        {
-            name: "Josef",
-            created: "A few seconds ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Daggy",
-            created: "7 days ago",
-        },
-        {
-            name: "Anubra",
-            created: "23 hours ago",
-        },
-        {
-            name: "Josef",
-            created: "A few seconds ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Daggy",
-            created: "7 days ago",
-        },
-        {
-            name: "Anubra",
-            created: "23 hours ago",
-        },
-        {
-            name: "Josef",
-            created: "A few seconds ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        },
-        {
-            name: "Sage",
-            created: "A few hours ago",
-        }
-    ];
+export default async function TableView({ page, perPage, userId }: { page: string, perPage: string, userId: string }) {
+    const header = ["name", "files", "actions"];
 
     const start = (parseInt(page) - 1) * parseInt(perPage);
     const end = start + parseInt(perPage);
+
+    const uploads = await getUploads(userId);
+    console.log(uploads);
+
+    const data = uploads.map((upload) => {
+        return {
+            name: upload.slug,
+            files: upload.files.length,
+        }
+    });
 
     return (
         <div>

@@ -1,16 +1,18 @@
 import { Metadata } from "next";
+import { currentUser } from '@clerk/nextjs/server';
 import UploadCore from "./UploadCore";
-import { Section, SectionTitle, SectionContent } from "@/app/_components/SectionEssentials/Section";
 
 export const metadata: Metadata = {
     title: "Upload Files - SpeedyUploads",
-    description: "Upload",
+    description: "Upload files here to share with others.",
 }
 
-export default function UploadPage() {
+export default async function UploadPage() {
+    const user = await currentUser();
+
     return (
         <div>
-            <UploadCore />
+            <UploadCore userId={user!.id} />
         </div>
     )
 }

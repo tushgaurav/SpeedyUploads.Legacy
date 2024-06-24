@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { Button, AspectRatio } from '@chakra-ui/react';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import UploadSuccess from './Success';
+import { createUpload } from '@/server/db/db_operations';
 
 const ErrorMessages = {
     "FileReaderError": "Error reading file. Please try again.",
@@ -19,7 +20,7 @@ const ErrorMessages = {
     "FileTypeError": "File type not supported. Please upload a JPG or PNG file.",
 }
 
-export default function UploadCore() {
+export default function UploadCore({ userId }: { userId: string }) {
     const [uploading, setUploading] = useState(false);
     const [uploadComplete, setUploadComplete] = useState(false);
     const [fileUrl, setFileUrl] = useState('' as string | null);
@@ -57,8 +58,20 @@ export default function UploadCore() {
             });
 
             const data = await response.json();
-            setUploading(false);
             setFileUrl(data.url);
+
+            // DB Operations
+            const syncData = { userId, dataUrl: data.url }
+
+            await fetch('/api/upload/sync', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(syncData),
+            });
+
+            setUploading(false);
             setUploadComplete(true);
         } catch (error) {
             setUploading(false);
@@ -139,7 +152,6 @@ export default function UploadCore() {
                             )
                         }
 
-                        {fileUrl}
                     </div >
                 </div>
             )}

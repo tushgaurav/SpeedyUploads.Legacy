@@ -17,5 +17,44 @@ model User {
   gender    String?
   imageUrl  String?
   lastSeen  DateTime?
+  image_url String?
   createdAt DateTime  @default(now())
+  Files     File[]
+  Uploads   Upload[]
+}
+
+enum Permission {
+  HIDDEN
+  PUBLIC
+  PASSWORD
+}
+
+model Upload {
+  id         Int        @id @default(autoincrement())
+  userId     String
+  slug       String     @unique
+  user       User       @relation(fields: [userId], references: [userId])
+  permission Permission @default(PUBLIC)
+  files      File[]
+  createdAt  DateTime   @default(now())
+  password   String?
+}
+
+model File {
+  id        Int       @id @default(autoincrement())
+  permaLink String    @unique
+  name      String?
+  extension String?
+  size      Int?
+  userId    String
+  user      User      @relation(fields: [userId], references: [userId])
+  metadata  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deleted   Boolean   @default(false)
+  deletedAt DateTime?
+  downloads Int       @default(0)
+  shaHash   String?
+  uploadId  Int?
+  Upload    Upload?   @relation(fields: [uploadId], references: [id])
 }

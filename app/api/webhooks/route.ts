@@ -1,6 +1,44 @@
+import type { User } from "@prisma/client";
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
+import { upsertUser } from "@/server/db/db_operations";
+
+type EmailAddress = {
+  email_address: string;
+  id: string;
+  linked_to: string[];
+  object: string;
+  verification: any;
+};
+
+type UserData = {
+  birthday: string;
+  created_at: number;
+  email_addresses: EmailAddress[];
+  external_accounts: any[];
+  external_id: string;
+  first_name: string;
+  gender: string;
+  id: string;
+  image_url: string;
+  last_name: string;
+  last_sign_in_at: number;
+  object: string;
+  password_enabled: boolean;
+  phone_numbers: any[];
+  primary_email_address_id: string;
+  primary_phone_number_id: string | null;
+  primary_web3_wallet_id: string | null;
+  private_metadata: Record<string, any>;
+  profile_image_url: string;
+  public_metadata: Record<string, any>;
+  two_factor_enabled: boolean;
+  unsafe_metadata: Record<string, any>;
+  updated_at: number;
+  username: string | null;
+  web3_wallets: any[];
+};
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -63,6 +101,18 @@ export async function POST(req: Request) {
   const eventType = evt.type;
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log("Webhook body:", body);
+
+  const userData: UserData = evt.data as any as UserData;
+
+  const user: User | any = {
+    userId: userData.id!,
+    email: userData.email_addresses[0].email_address,
+    firstName: userData.first_name,
+    lastName: userData.last_name,
+    imageUrl: userData.image_url,
+  };
+
+  await upsertUser(user);
 
   return new Response("", { status: 200 });
 }
