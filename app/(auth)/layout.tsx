@@ -26,7 +26,7 @@ export default function AuthLayout({
 
             {/* Place the logo to the top right of the page */}
             <Link href='/'>
-                <Image src="/logo_bg.png" width={120} alt="Logo" className='absolute top-4 left-4' />
+                <Image src="/logo_bg.svg" width={120} alt="Logo" className='absolute top-4 left-4' />
             </Link>
 
             <Flex p={8} flex={1} align={'center'} justify={'center'} className='flex-col'>

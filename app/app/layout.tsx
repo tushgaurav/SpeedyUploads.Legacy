@@ -76,7 +76,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             h="full"
             {...rest}>
             <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-                <Image src="/logo_bg.png" alt="Logo" width={120} height={50} />
+                <Image src="/logo_bg.svg" alt="Logo" width={120} height={50} />
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {LinkItems.map((link) => (
@@ -151,7 +151,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 }
             />
 
-            <Image src="/logo_bg.png" alt="Logo" width={120} height={50} className='md:hidden' />
+            <Image src="/logo_bg.svg" alt="Logo" width={120} height={50} className='md:hidden' />
 
             <HStack spacing={{ base: '3', md: '6' }}>
                 <FiBell />

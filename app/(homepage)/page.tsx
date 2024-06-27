@@ -8,7 +8,6 @@ import {
   Text,
   Button,
   Image,
-  Box,
 } from '@chakra-ui/react'
 import { SignedOut, SignedIn } from '@clerk/nextjs'
 

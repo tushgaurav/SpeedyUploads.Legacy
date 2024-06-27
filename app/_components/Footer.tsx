@@ -15,7 +15,7 @@ import Link from 'next/link'
 const Logo = (props: any) => {
     return (
         <Link href="/">
-            <Image w="120px" src="/logo_bg.png" alt="logo" {...props} />
+            <Image w="120px" src="/logo_bg.svg" alt="logo" {...props} />
         </Link>
     )
 }
