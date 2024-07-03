@@ -96,8 +96,10 @@ export default function UploadCore({ userId }: { userId: string }) {
             {uploadComplete ? (
                 <div className='flex  gap-6  justify-center items-center'>
                     <UploadSuccess fileLink={fileUrl as string} />
-                    <QRCode data={fileUrl} />
-                    <Share />
+                    <div className="flex flex-col gap-4 items-center">
+                        <QRCode data={fileUrl} />
+                        <Share link={fileUrl as string} />
+                    </div>
                 </div>
             ) : (
 
@@ -157,6 +159,8 @@ export default function UploadCore({ userId }: { userId: string }) {
                         }
 
                     </div >
+
+
                 </div>
             )}
 

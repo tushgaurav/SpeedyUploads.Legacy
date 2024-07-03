@@ -21,6 +21,7 @@
     "@vercel/og": "^0.6.2",
     "framer-motion": "^11.2.10",
     "next": "14.2.4",
+    "qr-code-styling": "^1.6.0-rc.1",
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
