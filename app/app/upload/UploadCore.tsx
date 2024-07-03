@@ -11,6 +11,8 @@ import { Button, AspectRatio } from '@chakra-ui/react';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import UploadSuccess from './Success';
 import { createUpload } from '@/server/db/db_operations';
+import QRCode from '@/components/QRCode/QRCode';
+import Share from '@/components/Share';
 
 const ErrorMessages = {
     "FileReaderError": "Error reading file. Please try again.",
@@ -92,8 +94,10 @@ export default function UploadCore({ userId }: { userId: string }) {
         <div>
             {/* If upload complete display something different */}
             {uploadComplete ? (
-                <div>
+                <div className='flex  gap-6  justify-center items-center'>
                     <UploadSuccess fileLink={fileUrl as string} />
+                    <QRCode data={fileUrl} />
+                    <Share />
                 </div>
             ) : (
 
