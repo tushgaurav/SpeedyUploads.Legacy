@@ -1,6 +1,7 @@
 import TableComponent from "./TableComponent";
 import Pagination from "./Pagination";
 import { getUploads } from "@/server/db/db_operations";
+import { largeString } from "@/lib/utils";
 
 export default async function TableView({ page, perPage, userId }: { page: string, perPage: string, userId: string }) {
     const header = ["name", "files", "actions"];
@@ -14,7 +15,7 @@ export default async function TableView({ page, perPage, userId }: { page: strin
     const data = uploads.map((upload) => {
         return {
             id: upload.id,
-            name: upload.slug,
+            name: largeString(upload.slug),
             files: upload.files.length,
         }
     });

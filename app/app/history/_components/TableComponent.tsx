@@ -3,31 +3,28 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
     Td,
-    TableCaption,
     ButtonGroup,
     IconButton,
-    Button,
     Flex,
-
-} from "@chakra-ui/react"
-
+} from "@chakra-ui/react";
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import Link from "next/link";
 
 export default function TableComponent({ header, data }: { header: string[], data: any[] }) {
-    console.log(data)
-    const color1 = "gray.400"
-    const color2 = "gray.400"
+    console.log(data);
+    const color1 = "gray.400";
+    const color2 = "gray.400";
     return (
         <Flex
             alignItems="center"
             justifyContent="center"
-            className="mt-4 max-w-4xl"
+            mt="4"
+            maxW="4xl"
+            w="full"
         >
             <Table
                 w="full"
@@ -57,6 +54,7 @@ export default function TableComponent({ header, data }: { header: string[], dat
                         {header.map((x) => (
                             <Th key={x}>{x}</Th>
                         ))}
+
                     </Tr>
                 </Thead>
                 <Tbody
@@ -71,6 +69,7 @@ export default function TableComponent({ header, data }: { header: string[], dat
                     }}
                 >
                     {data.map((token, tid) => {
+                        const { id, ...tokenData } = token; // Destructure to exclude id
                         return (
                             <Tr
                                 key={tid}
@@ -86,7 +85,7 @@ export default function TableComponent({ header, data }: { header: string[], dat
                                     gridGap: "10px",
                                 }}
                             >
-                                {Object.keys(token).map((x) => {
+                                {Object.keys(tokenData).map((x) => {
                                     return (
                                         <React.Fragment key={`${tid}${x}`}>
                                             <Td
@@ -113,7 +112,7 @@ export default function TableComponent({ header, data }: { header: string[], dat
                                                 fontSize="md"
                                                 fontWeight="hairline"
                                             >
-                                                {token[x]}
+                                                {tokenData[x]}
                                             </Td>
                                         </React.Fragment>
                                     );
@@ -139,7 +138,7 @@ export default function TableComponent({ header, data }: { header: string[], dat
                                 </Td>
                                 <Td>
                                     <ButtonGroup variant="solid" size="sm" spacing={3}>
-                                        <Link href={`history/view/${token.id}`}>
+                                        <Link href={`history/view/${id}`}>
                                             <IconButton
                                                 colorScheme="blue"
                                                 icon={<BsBoxArrowUpRight />}
