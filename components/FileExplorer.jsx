@@ -74,7 +74,6 @@ const FileExplorer = ({ upload }) => {
         >
           {files.map((file) => (
             // <Tooltip
-            //   key={file.id}
             //   label={`Name: ${file.name}\nSize: ${(
             //     file.size /
             //     (1024 * 1024)
@@ -89,6 +88,7 @@ const FileExplorer = ({ upload }) => {
             //   hasArrow
             // >
             <Box
+              key={file.id}
               p={4}
               borderWidth="1px"
               borderRadius="md"
