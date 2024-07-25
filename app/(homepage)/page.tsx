@@ -9,6 +9,8 @@ import {
   Button,
   Image,
 } from '@chakra-ui/react'
+import { FaArrowRightLong as ArrowRightIcon } from "react-icons/fa6";
+import AnimatedShinyText from "@/components/UI/AnimatedShinyText";
 import { VelocityScroll } from '@/components/UI/VelocityScroll'
 import { SignedOut, SignedIn } from '@clerk/nextjs'
 
@@ -25,8 +27,20 @@ export default function Page() {
           textAlign={'center'}
           align={'center'}
           spacing={{ base: 6, md: 8 }}
-          py={{ base: 20, md: 28 }}>
+          pt={{ base: 10, md: 12 }}
+          pb={{ base: 20, md: 28 }}>
 
+
+          <div
+            className=
+            "group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 "
+
+          >
+            <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+              <span>✨ SpeedyUploads is going Open Source!</span>
+              <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+            </AnimatedShinyText>
+          </div>
 
           <VelocityScroll
             text="Speed   ."
