@@ -4,7 +4,7 @@
 <table>
 <tr>
 <td>
-  A file sharing and content delivery platform based on the ease of use.
+  Instantly upload and share files with ease on SpeedyUploads.com’s user-friendly platform.
 </td>
 </tr>
 </table>
@@ -34,20 +34,22 @@ If you find a bug (the website couldn't handle the query and / or gave undesired
 If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/tushgaurav/SpeedyUploads/issues/new). Please include sample queries and their corresponding results.
 
 
-## Built with 
+## Tech Stack
 
-- [jQuery - Ajax](http://www.w3schools.com/jquery/jquery_ref_ajax.asp) - jQuery simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.
-- [Google Chart API](https://developers.google.com/chart/interactive/docs/quick_start) - Free , Rich Gallery , Customizable and Cross-browser compatible.
-- [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
+- [Next.js](https://nextjs.org/) - Frontend in React.js and serverless backend.
+- [ChakraUI](https://chakra-ui.com/) - For styling.
+- [Azure Blob Storage](https://azure.microsoft.com/en-in/products/storage/blobs) - Main object storage.
+- [Amazon S3](https://aws.amazon.com/s3/) - Backup object storage.
+- [PostgreSQL Database](https://azure.microsoft.com/en-in/products/postgresql) - Main production database hosted on Azure.
+- [Clerk](https://clerk.dev/) - For authentication.
 
 
 ## To-do
-- Add BSE (India) Symbol to the current App.
-- Decide comparison models of Stocks. (suggestions are most welcome).
-- Another WebApp, capable of comparing at least 10 stocks.
+- Custom share pages for each uploads.
+- Multiple file uploads.
 
 
-## [License](https://github.com/iharsh234/WebApp/blob/master/LICENSE.md)
+### [License](https://github.com/tushgaurav/SpeedyUploads/blob/main/LICENSE)
 
-GPLv3 © [Tushar Gaurav ](https://github.com/tushgaurav)
+GPLv2
 
