@@ -19,7 +19,7 @@
     "@emotion/styled": "^11.11.5",
     "@prisma/client": "^5.15.1",
     "@vercel/og": "^0.6.2",
-    "framer-motion": "^11.2.10",
+    "framer-motion": "^11.3.17",
     "next": "14.2.4",
     "qr-code-styling": "^1.6.0-rc.1",
     "react": "^18",

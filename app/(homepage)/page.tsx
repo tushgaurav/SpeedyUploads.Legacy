@@ -9,6 +9,7 @@ import {
   Button,
   Image,
 } from '@chakra-ui/react'
+import { VelocityScroll } from '@/components/UI/VelocityScroll'
 import { SignedOut, SignedIn } from '@clerk/nextjs'
 
 export const metadata: Metadata = {
@@ -19,12 +20,20 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className='bg-blue-100 text-black'>
-      <Container maxW={'7xl'}>
+      <Container maxW={'7xl'} className=''>
         <Stack
           textAlign={'center'}
           align={'center'}
-          spacing={{ base: 8, md: 10 }}
+          spacing={{ base: 6, md: 8 }}
           py={{ base: 20, md: 28 }}>
+
+
+          <VelocityScroll
+            text="Speed   ."
+            default_velocity={5}
+            className="font-display text-center text-4xl font-black tracking-[-0.02em] text-primaryblue/20 drop-shadow-sm md:text-7xl md:leading-[5rem]"
+          />
+
           <Heading
             fontWeight={200}
             fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
@@ -57,7 +66,7 @@ export default function Page() {
                 Upload Now!
               </Button>
             </SignedIn>
-            <Button rounded={'full'} px={6} _hover={{ bg: 'blue.200' }}>
+            <Button rounded={'full'} px={6} background={'lightblue'} _hover={{ bg: 'blue.200' }}>
               Learn more
             </Button>
           </Stack>
