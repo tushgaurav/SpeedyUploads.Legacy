@@ -48,7 +48,7 @@ export default function UploadCore({ userId }: { userId: string }) {
     console.log(filesContent)
 
 
-    const handleImageUpload = async (base64Image: string) => {
+    const handleImageUpload = async (name: string, extension: string, base64Image: string) => {
         try {
             setUploading(true);
             const response = await fetch('/api/upload', {
@@ -63,7 +63,7 @@ export default function UploadCore({ userId }: { userId: string }) {
             setFileUrl(data.url);
 
             // DB Operations
-            const syncData = { userId, dataUrl: data.url }
+            const syncData = { userId, dataUrl: data.url, name, extension }
 
             await fetch('/api/upload/sync', {
                 method: 'POST',
@@ -83,8 +83,10 @@ export default function UploadCore({ userId }: { userId: string }) {
 
     const uploadImages = () => {
         filesContent.forEach(file => {
+            const name = file.name;
+            const extension = name.split('.').pop() as string;
             const base64Image = file.content.split(',')[1];
-            handleImageUpload(base64Image);
+            handleImageUpload(name, extension, base64Image);
         });
     };
 
@@ -135,11 +137,11 @@ export default function UploadCore({ userId }: { userId: string }) {
                                         filesContent.map((file, index) => (
                                             <div key={index}>
                                                 <h2 className='font-light text-sm '>{file.name}</h2>
-                                                {/* Calculate file length */}
-                                                {/* <p>Size: {file.size} bytes</p> */}
-                                                {/* <AspectRatio maxW='260px' ratio={1}>
-                            <img alt={file.name} src={file.content} className='w-full'></img>
-                        </AspectRatio> */}
+
+
+                                                <AspectRatio maxW='260px' ratio={1}>
+                                                    <img alt={file.name} src={file.content} className='w-full'></img>
+                                                </AspectRatio>
                                             </div>
                                         ))
                                     }

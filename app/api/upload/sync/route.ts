@@ -6,7 +6,12 @@ export async function POST(request: Request) {
     const data = await request.json();
     console.log(data);
     await createUpload(data.userId, data.dataUrl, [
-      { permaLink: data.dataUrl, userId: data.userId },
+      {
+        permaLink: data.dataUrl,
+        userId: data.userId,
+        name: data.name,
+        extension: data.extension,
+      },
     ]);
     return Response.json({ message: "Success" });
   } catch (error) {

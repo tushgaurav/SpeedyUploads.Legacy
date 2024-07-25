@@ -22,6 +22,8 @@ export const createUpload = async (
   let fileArray = files.map((file: any) => ({
     permaLink: file.permaLink,
     userId,
+    name: file.name,
+    extension: file.extension,
   }));
 
   try {
