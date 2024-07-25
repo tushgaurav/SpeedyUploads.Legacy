@@ -13,6 +13,7 @@ export default async function TableView({ page, perPage, userId }: { page: strin
 
     const data = uploads.map((upload) => {
         return {
+            id: upload.id,
             name: upload.slug,
             files: upload.files.length,
         }

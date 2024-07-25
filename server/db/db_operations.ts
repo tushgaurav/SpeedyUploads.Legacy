@@ -57,3 +57,10 @@ export const getUploads = async (userId: string) => {
     orderBy: { createdAt: "desc" },
   });
 };
+
+export const getUpload = async (id: number) => {
+  return await prisma.upload.findUnique({
+    where: { id },
+    include: { files: true },
+  });
+};

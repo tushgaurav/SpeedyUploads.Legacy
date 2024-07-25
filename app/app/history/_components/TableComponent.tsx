@@ -17,8 +17,10 @@ import {
 
 import { BsBoxArrowUpRight, BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
+import Link from "next/link";
 
 export default function TableComponent({ header, data }: { header: string[], data: any[] }) {
+    console.log(data)
     const color1 = "gray.400"
     const color2 = "gray.400"
     return (
@@ -137,11 +139,13 @@ export default function TableComponent({ header, data }: { header: string[], dat
                                 </Td>
                                 <Td>
                                     <ButtonGroup variant="solid" size="sm" spacing={3}>
-                                        <IconButton
-                                            colorScheme="blue"
-                                            icon={<BsBoxArrowUpRight />}
-                                            aria-label="Up"
-                                        />
+                                        <Link href={`history/view/${token.id}`}>
+                                            <IconButton
+                                                colorScheme="blue"
+                                                icon={<BsBoxArrowUpRight />}
+                                                aria-label="Up"
+                                            />
+                                        </Link>
                                         <IconButton
                                             colorScheme="green"
                                             icon={<AiFillEdit />}
