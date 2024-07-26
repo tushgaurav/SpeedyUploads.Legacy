@@ -1,5 +1,7 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { Metadata } from "next"
+import NumberTicker from '@/components/UI/NumberTicker';
+import Home from './AppHome';
 
 export const metadata: Metadata = {
     title: "Dashboard - SpeedyUploads",
@@ -11,7 +13,7 @@ export default async function DashboardPage() {
 
     return (
         <div>
-            <h1 className='text-2xl font-bold'>Welcome, {`${user?.firstName} 😁`}</h1>
+            <Home user={user!} />
         </div>
     )
 }
