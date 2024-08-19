@@ -64,3 +64,24 @@ export const getUpload = async (id: number) => {
     include: { files: true },
   });
 };
+
+// For Dashboard Page
+export const getDataForDashboard = async (userId: string) => {
+  const totalUploads = (await prisma.upload.count({ where: { userId } })) || 0;
+  const totalDownloads = 23;
+
+  const totalFiles = await prisma.file.count({ where: { userId } });
+  // const storageUsed = await prisma.file.aggregate({
+  //   where: { userId },
+  //   sum: { size: true },
+  // });
+
+  const storageUsed = 303030;
+
+  return {
+    totalUploads,
+    totalDownloads,
+    totalFiles,
+    storageUsed: storageUsed,
+  };
+};

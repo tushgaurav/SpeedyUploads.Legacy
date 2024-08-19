@@ -12,8 +12,11 @@ import MiniStatistics from "@/components/MiniStatistics";
 import SimpleCard from "@/components/UI/Card/SimpleCard";
 import DownloadsOverview from "@/components/DownloadsOverview";
 import LineChart from "@/components/Charts/LineChart";
+import { getDataForDashboard } from "@/server/db/db_operations";
 
-export default function Home({ user }: { user: User }) {
+export default async function Home({ user }: { user: User }) {
+    const data = await getDataForDashboard(user.id);
+    console.log(data);
     return (
         <div>
             <h1 className="text-2xl">Welcome, {`${user?.firstName} 😁!`}</h1>
@@ -22,25 +25,25 @@ export default function Home({ user }: { user: User }) {
             <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing="24px">
                 <MiniStatistics
                     title={"Total Uploads"}
-                    amount={"69"}
+                    amount={data.totalUploads === 0 ? 0 : <NumberTicker value={data.totalUploads} />}
                     percentage={55}
                     icon={<IoCloudUploadSharp className="h-[24px] w-[24px]" />}
                 />
                 <MiniStatistics
                     title={"Total Downloads"}
-                    amount={"2,300"}
+                    amount={data.totalDownloads === 0 ? 0 : <NumberTicker value={data.totalDownloads} />}
                     percentage={5}
                     icon={<IoCloudDownloadSharp className="h-[24px] w-[24px]" />}
                 />
                 <MiniStatistics
                     title={"Storage Used"}
-                    amount={"+3,020 MB"}
+                    amount={data.storageUsed}
                     percentage={-14}
                     icon={<IoServerSharp className="h-[24px] w-[24px]" />}
                 />
                 <MiniStatistics
                     title={"Total Files"}
-                    amount={"100"}
+                    amount={data.totalFiles === 0 ? 0 : <NumberTicker value={data.totalFiles} />}
                     percentage={8}
                     icon={<IoDocument className="h-[24px] w-[24px]" />}
                 />

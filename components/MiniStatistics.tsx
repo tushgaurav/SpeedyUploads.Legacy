@@ -13,7 +13,7 @@ import CardBody from "@/components/UI/Card/CardBody";
 import IconBox from "@/components/UI/Icons/IconBox";
 import React from "react";
 
-const MiniStatistics = ({ title, amount, percentage, icon }: { title: string, amount: string, percentage: number, icon: any }) => {
+const MiniStatistics = ({ title, amount, percentage, icon }: { title: string, amount: number | React.ReactNode, percentage: number, icon: any }) => {
     const textColor = "gray.800";
 
     return (
