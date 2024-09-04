@@ -45,6 +45,9 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 
 ## To-do
+- Homepage Redesign.
+- Layout Redesign.
+- SpeedyUploads Bug Bounty Page (/whitehat).
 - Custom share pages for each uploads.
 - Multiple file uploads.
 
