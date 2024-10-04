@@ -9,6 +9,10 @@
 </tr>
 </table>
 
+<!-- Archived -->
+### This project is no longer maintained. Please feel free to fork and modify it to suit your needs.
+#### New project: [SpeedyUploads](https://github.com/tushgaurav/SpeedyUploads/) is now live.
+
 
 ## Live WebApp
 Here is a main webapp:  https://speedyuploads.com/
