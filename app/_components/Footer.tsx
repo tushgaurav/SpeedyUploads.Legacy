@@ -63,9 +63,8 @@ export default function Footer() {
                 align={'center'}>
                 <div className='flex items-center gap-8 flex-wrap pb-2'>
                     <Logo />
-                    <Text className='text-xs font-bold hover:cursor-not-allowed'>A Prokits Digital Brand</Text>
                 </div>
-                <Stack direction={'row'} spacing={6}>
+                <Stack direction={'row'} spacing={6} className='text-xs font-bold hover:cursor-not-allowed'>
                     <Box as="a" href={'https://speedyuploads.instatus.com/'}>
                         System Status
                     </Box>
@@ -90,7 +89,7 @@ export default function Footer() {
                     spacing={4}
                     justify={{ base: 'center', md: 'space-between' }}
                     align={{ base: 'center', md: 'center' }}>
-                    <Text>© 2024 Prokits Digital Pvt. Ltd. All rights reserved</Text>
+                    <Text className='text-sm'>© {new Date().getFullYear()} | <Link href="https://prokits.digital" target='_blank' className='font-semibold'>Prokits Digital</Link></Text>
                     <Stack direction={'row'} spacing={6}>
                         <SocialButton label={'Twitter'} href={'#'}>
                             <FaTwitter />

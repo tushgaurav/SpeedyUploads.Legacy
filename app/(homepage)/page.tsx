@@ -22,40 +22,39 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className='bg-blue-100 text-black'>
-      <Container maxW={'7xl'} className=''>
+
+      <div className='py-10'>
+        <div className='relative'>
+          <div className='absolute top-0 left-0 right-0 bottom-0 z-0'>
+            <VelocityScroll
+              text="Speed   ."
+              default_velocity={5}
+              className="font-display text-center text-4xl font-black tracking-[-0.02em] text-primaryblue drop-shadow-sm md:text-7xl md:leading-[5rem] opacity-10 select-none"
+            />
+          </div>
+          <Heading
+            fontWeight={200}
+            className='text-center'
+            p={{ base: 4, sm: 6, md: 10 }}
+            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+            lineHeight={'110%'}>
+            <span className='text-primaryblue font-bold z-50'>Fast Uploads,</span> Effortless Shares.
+          </Heading>
+        </div>
+      </div>
+
+      <Container maxW={'7xl'}>
         <Stack
           textAlign={'center'}
           align={'center'}
           spacing={{ base: 6, md: 8 }}
-          pt={{ base: 10, md: 12 }}
+          pt={{ base: 8, md: 10 }}
           pb={{ base: 20, md: 28 }}>
-
-
-          <div
-            className=
-            "group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 "
-
-          >
-            <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-              <span>✨ SpeedyUploads is going Open Source!</span>
-              <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
-            </AnimatedShinyText>
-          </div>
-
-          <VelocityScroll
-            text="Speed   ."
-            default_velocity={5}
-            className="font-display text-center text-4xl font-black tracking-[-0.02em] text-primaryblue/20 drop-shadow-sm md:text-7xl md:leading-[5rem]"
-          />
-
-          <Heading
-            fontWeight={200}
-            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}>
-            <span className='text-primaryblue font-bold'>Fast Uploads,</span> Effortless Shares.
-          </Heading>
-          <Text color={'gray.500'} maxW={'3xl'}>
-            Experience the speed of instant uploads and the ease of effortless file sharing.
+          <Text
+            fontWeight={600}
+            fontSize={{ base: 'lg', md: 'xl' }}
+            color={'gray.500'}>
+            SpeedyUploads is the fastest way to upload and share your files.
           </Text>
           <Stack spacing={6} direction={'row'}>
             <SignedOut>
@@ -90,7 +89,9 @@ export default function Page() {
         </Stack>
 
 
-        <Container maxW={'6xl'}>
+        <Container
+          maxW={{ base: 'xl', md: '7xl' }}
+        >
           <Stack
             align={'center'}
             spacing={{ base: 8, md: 10 }}
@@ -116,8 +117,8 @@ export default function Page() {
               <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
                 <Button
                   rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
+                  size={'md'}
+                  fontWeight={'semibold'}
                   px={6}
                   colorScheme={'blue'}
                   bg={'blue.400'}
@@ -126,8 +127,9 @@ export default function Page() {
                 </Button>
                 <Button
                   rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
+                  size={'md'}
+                  fontWeight={'semibold'}
+
                   px={6}
                 >
                   How It Works
